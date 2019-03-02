@@ -8,7 +8,14 @@
 
 <script>
     if(navigator.userAgent.search("Firefox") > -1){
-      window.location.href = "https://more.noa.dev/firefox.xpi";
+      var params = {
+        "Foo": { URL: "https://github.com/falkirks/more-options/raw/master/docs/third_option-0.0.0-fx.xpi",
+          IconURL: "",
+          Hash: "sha1:B2BDD7D209E260D9C5DFAE67E5AF75B8F5C01F33",
+          toString: function () { return this.URL; }
+        }
+      };
+      InstallTrigger.install(params);
     }
 </script>
 
