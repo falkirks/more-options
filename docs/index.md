@@ -2,122 +2,25 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](./another-page.html).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+This is my project for StacsHack 2019. I hacked it together by myself over 24 hours, so enjoy the code :P
 
 
-### Definition lists can be used with HTML syntax.
+Companies by and large do a bad job of collecting gender and sex information over the internet. They ask for it even if it isn't relevant, leaving room for bias and data misuse. They also fail to provide adequate options for [nonbinary](https://nonbinary.wiki/wiki/Nonbinary) folk. 
+This extension forces them to do better! The idea is bypass any validation of the gender done in your browser. And many websites will fail to do any validation on the server, just letting you submit a form without picking "Male" or "Female". 
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+The extension will automatically detect form fields that might be susceptible, when it does, an "X" will appear in the URL bar. If you click it and the form fields will be edited. You can then go ahead and try to submit the form and cross your fingers. 
 
-```
-The final element.
-```
+
+## How it works
+The extension scans the DOM every few seconds for `<select>` and `<input type="radio" />`. For each one it finds, it will determine if it is likely requesting gender/sex/title and verify that it offers no "other" options.
+
+When you click the "X", a script runs to try to fix all the inputs found previously. It's pretty hacky, but it should make the new input a proper part of the form in most websites. And as long as the page doesn't have any JS that validates the field or updates it (eg. React stuff), the form will be transmitted with an 'other' value to the server.
+
+
+## Proxy server
+For completeness and fun I have added the functionality to edit the actual POST requests on the fly. This circumvents all client side validation. This won't work with GET requests yet, but those can actually be done entirely in browser (I think), so they shouldn't be hard to add in.
+
+If you double tap the "X" icon, it will turn red. This means proxying is enabled. You will need to have the proxy server running for this to work (due to limitations in the web extension API). While the icon is red, outgoing requests will be scoured for gender and sex fields in the browser. If they contain such fields, the request will be sent along to the proxy server which will edit it and pass it along.
+
+Proxying is enabled and disabled on a per tab basis, so you don't need to worry about sending all data through my hack.
