@@ -11,7 +11,8 @@
   },
   "background": {
     "scripts": [
-      "scripts/background.js"
+      "scripts/background.js",
+      "scripts/webRequests.js"
     ]
   },
   "page_action": {
@@ -43,6 +44,8 @@
     }
   ],
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "webRequest",
+    "<all_urls>"
   ]
 }

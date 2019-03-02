@@ -22,8 +22,12 @@ function showPageAction(message, sender) {
 }
 
 function notify(message, sender) {
-
+  switch(message.intent){
+    case 'showPage':
+      showPageAction(message, sender);
+      break;
+    case 'hidePage':
+      hidePageAction(message, sender);
+      break;
+  }
 }
-
-
-console.log(`'Allo 'Allo! Event Page for Page Action`);
