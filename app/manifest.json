@@ -48,5 +48,10 @@
     "webRequest",
     "webRequestBlocking",
     "<all_urls>"
-  ]
+  ],
+  "applications": {
+    "gecko": {
+      "id": "more@noa.dev"
+    }
+  }
 }
