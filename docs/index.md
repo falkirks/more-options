@@ -12,6 +12,8 @@ This extension forces them to do better! The idea is bypass any validation of th
 The extension will automatically detect form fields that might be susceptible, when it does, an "X" will appear in the URL bar. If you click it and the form fields will be edited. You can then go ahead and try to submit the form and cross your fingers. 
 
 
+![Demo of the project, form only has male and female options, click X, other option is added](demo.gif)
+
 ## How it works
 The extension scans the DOM every few seconds for `<select>` and `<input type="radio" />`. For each one it finds, it will determine if it is likely requesting gender/sex/title and verify that it offers no "other" options.
 

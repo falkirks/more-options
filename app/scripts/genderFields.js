@@ -14,7 +14,7 @@ function findGenderSelect(){
   $('select').each(function (selectIndex, select) {
     let pass = true;
     $(this).find('option').each((optIndex, option) => {
-      if(!isGendery($(option).text())){
+      if(!isGendery($(option).text()) && $(option).attr("hidden") !== "hidden"){
         pass = false;
       }
     });
