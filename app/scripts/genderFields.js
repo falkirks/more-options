@@ -52,7 +52,20 @@ function isGendery(str) {
 function fixGenderFields(list) {
   $.each(list, (i, item)=> {
     if(typeof item === "string"){ // this is a radio selection
-      $('input[name=' + item + ']').first().before('<input type="radio" id="genderXFOREXTMOREOPT62" name="' + item + '" value="X"><label for="genderXFOREXTMOREOPT62">Other gender (added by more options)</label>')
+      // add our new one
+      let form =  document.getElementsByName(item)[0].form;
+
+      let targetFormId;
+      if(form.attributes['id'] != null){
+        targetFormId = form.attributes['id']
+      } else {
+        targetFormId = "genderXFOREXTMOREOPT65";
+        form.setAttribute('id', targetFormId);
+      }
+
+      $('input[name=' + item + ']').first().before('<input type="radio" id="genderXFOREXTMOREOPT62" name="' + item + '" value="X"><label for="genderXFOREXTMOREOPT62">Other gender (added by more options)</label>');
+      $('#genderXFOREXTMOREOPT62').attr('form', targetFormId);
+
     }
     else if($.isNumeric($(item).find('option').first().val())){ // If we have some numeric value, we should combat with the like
       $(item).append(new Option("Other gender (added by more options)", "7")); // 7 is just random :-)

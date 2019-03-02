@@ -5,10 +5,21 @@ import {findTitleSelect, fixTitleFields} from './titleFields'
 
 // Notification processing
 browser.runtime.onMessage.addListener(notify);
+
+let lastClick = 0;
+
 function notify(message) {
   switch (message.intent) {
     case 'notifyClick':
-      runFixes();
+      if(lastClick + 750 > Date.now()){
+        lastClick = 0;
+        browser.runtime.sendMessage({intent: "toggleFilterPackets"});
+        console.log("toggle");
+      }
+      else {
+        runFixes();
+        lastClick = Date.now();
+      }
       break;
   }
 }
@@ -19,13 +30,13 @@ function runFixes() {
 }
 
 function checkPageForTargets(){
-  console.log(findGenderSelect());
+  console.log("checking");
   if(findGenderSelect().length > 0 || findTitleSelect().length > 0){
     browser.runtime.sendMessage({ intent: "showPage" });
-  } else {
-    browser.runtime.sendMessage({ intent: "hidePage" });
+    console.log("found");
   }
 }
 
 
 checkPageForTargets();
+setTimeout(checkPageForTargets, 3000);
