@@ -39,4 +39,5 @@ function checkPageForTargets(){
 
 
 checkPageForTargets();
+browser.runtime.sendMessage({intent: "meetPkFilter"});
 setTimeout(checkPageForTargets, 3000);

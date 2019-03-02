@@ -17,8 +17,8 @@
   },
   "page_action": {
     "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
+      "19": "images/blackx-19.png",
+      "38": "images/blackx-38.png"
     },
     "default_title": "__MSG_browserActionTitle__"
   },
@@ -46,6 +46,7 @@
   "permissions": [
     "activeTab",
     "webRequest",
+    "webRequestBlocking",
     "<all_urls>"
   ]
 }

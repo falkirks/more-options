@@ -1,8 +1,15 @@
 # more options
 
+This extension provides more options on forms by taking advantage of lack of input sanitization.
+
 ## Install
 
 	$ npm install
+	
+## Start proxy
+The proxy is only required if you wish to use packet interception instead of basic DOM manipulation. 
+
+    $ npm run proxy
 
 ## Development
 

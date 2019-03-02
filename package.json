@@ -4,9 +4,15 @@
   "description": "Force forms to add additional gender, sex, and title options",
   "scripts": {
     "dev": "webextension-toolbox dev",
-    "build": "webextension-toolbox build"
+    "build": "webextension-toolbox build",
+    "proxy": "node proxy.js"
   },
   "devDependencies": {
     "webextension-toolbox": "latest"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "http-proxy": "^1.17.0",
+    "into-stream": "^4.0.0"
   }
 }
