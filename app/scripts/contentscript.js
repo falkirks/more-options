@@ -2,6 +2,8 @@ import $ from './jquery';
 import {findGenderSelect, fixGenderFields} from './genderFields'
 import {findTitleSelect, fixTitleFields} from './titleFields'
 
+import { tween, styler, easing } from 'popmotion'
+
 
 // Notification processing
 browser.runtime.onMessage.addListener(notify);
@@ -25,8 +27,29 @@ function notify(message) {
 }
 
 function runFixes() {
-  fixTitleFields(findTitleSelect());
-  fixGenderFields(findGenderSelect());
+  let titles = findTitleSelect();
+  let genders = findGenderSelect();
+
+  runAnims(titles);
+  runAnims(genders);
+
+  fixTitleFields(titles);
+  fixGenderFields(genders);
+}
+
+function runAnims(list) {
+  list.forEach(function (item) {
+    if(typeof item !== "string"){ // We wont animate radio buttons this way
+      const styled = styler(item);
+      tween({
+        from: {scale: 1 },
+        to: {scale: 1.5 },
+        ease: easing.easeInOut,
+        duration: 400,
+        flip: 1,
+      }).start(v => styled.set(v));
+    }
+  });
 }
 
 function checkPageForTargets(){

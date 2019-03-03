@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "http-proxy": "^1.17.0",
-    "into-stream": "^4.0.0"
+    "into-stream": "^4.0.0",
+    "popmotion": "^8.6.3"
   }
 }
