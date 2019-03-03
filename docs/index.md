@@ -6,7 +6,7 @@ This is my project for StacsHack 2019. I hacked it together by myself over 24 ho
 
 
 Companies by and large do a bad job of collecting gender and sex information over the internet. They ask for it even if it isn't relevant, leaving room for bias and data misuse. They also fail to provide adequate options for [nonbinary](https://nonbinary.wiki/wiki/Nonbinary) folk. 
-This browser extension forces them to do better! The idea is bypass any validation of the gender done in your browser. And many websites will fail to do any validation on the server, just letting you submit a form without picking "Male" or "Female". 
+This browser extension forces them to do better! The idea is to bypass any validation of gender done in your browser. And many websites will fail to do any validation on the server, just letting you submit a form without picking "Male" or "Female". 
 
 
 The extension will automatically detect form fields that might be susceptible, when it does, an "X" will appear in the URL bar. If you click it and the form fields will be edited. You can then go ahead and try to submit the form and cross your fingers. 
