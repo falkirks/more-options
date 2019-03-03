@@ -15,27 +15,32 @@ var proxy = httpProxy.createProxyServer({});
 var server = http.createServer(function(req, res) {
   // You can define here your custom logic to handle the request
   // and then proxy the request.
-  if (req.method === 'POST') {
-    let body = '';
-    req.on('data', chunk => {
-      body += chunk.toString(); // convert Buffer to string
-    });
-    req.on('end', () => {
-      console.log(body);
-
-      body = body.replace(/(gender.*?)(=|:.?")(male|female|M|F|man|woman)/g, function (match, p1, p2, p3, offset, string) {
-        return p1 + p2 + "X";
+  if(req.headers.referer) {
+    if (req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
       });
-      console.log(body);
-      req.rawBody = body;
-      proxy.web(req, res, {
-        target: req.headers.referer ,
-        buffer: intoStream(req.rawBody)
-      });
-    });
+      req.on('end', () => {
+        console.log(body);
 
-  } else {
-    proxy.web(req, res, {target: req.headers.referer});
+        body = body.replace(/(gender.*?)(=|:.?")(male|female|M|F|man|woman)/g, function (match, p1, p2, p3, offset, string) {
+          return p1 + p2 + "X";
+        });
+        console.log(body);
+        req.rawBody = body;
+        proxy.web(req, res, {
+          target: req.headers.referer,
+          buffer: intoStream(req.rawBody)
+        });
+      });
+
+    } else {
+      proxy.web(req, res, {target: req.headers.referer});
+    }
+  }
+  else {
+    res.end('malformed proxy req');
   }
 });
 

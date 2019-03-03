@@ -10,7 +10,7 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.post('/capture', function(req, res) {
   console.log(req.body);
   // ...
-  res.end('got!');
+  res.json(req.body);
 });
 
 app.listen(port, () => console.log(`capture app listening on port ${port}!`));

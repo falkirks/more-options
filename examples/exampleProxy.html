@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example proxy</title>
+    <style>
+        [include*="form-input-select()"] {
+            display: block;
+            padding: 0;
+            position: relative;
+            /* Set options to normal weight */
+            /* ------------------------------------  */
+            /* START OF UGLY BROWSER-SPECIFIC HACKS */
+            /* ----------------------------------  */
+            /* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container.
+               The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex.
+               You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
+            /* Show only the native arrow */
+            color: #005BA6;
+            display: block;
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 16px;
+            margin-top: 9px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+
+        body {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border: 1em solid #005BA6;
+        }
+        body div {
+            max-width: 16em;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+    </style>
+</head>
+<body>
+<div include="form-input-select()">
+    <div style="padding-bottom: 30px;">
+    <select required form="testForm" name="gender">
+        <!--
+          This is how we can do "placeholder" options.
+          note: "required" attribute is on the select
+        -->
+        <option value=""
+                hidden
+        >Gender</option>
+
+        <!-- normal options -->
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select>
+
+    </div>
+
+    <form id="testForm" name="testForm" action="http://localhost:3000/capture" method="post">
+        <input type="submit" value="Submit!"/>
+    </form>
+
+</div>
+</form>
+</body>
+</html>
