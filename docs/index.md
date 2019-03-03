@@ -9,7 +9,7 @@ Companies by and large do a bad job of collecting gender and sex information ove
 This browser extension forces them to do better! The idea is to bypass any validation of gender done in your browser. And many websites will fail to do any validation on the server, just letting you submit a form without picking "Male" or "Female". 
 
 
-The extension will automatically detect form fields that might be susceptible, when it does, an "X" will appear in the URL bar. If you click it and the form fields will be edited. You can then go ahead and try to submit the form and cross your fingers. 
+The extension will automatically detect form fields that might be susceptible, when it does, an "X" will appear in the URL bar. Click it and the form fields will be edited to include an "other" option. You can then go ahead and try to submit the form and cross your fingers. 
 
 
 ![Demo of the project, form only has male and female options, click X, other option is added](demo.gif)
