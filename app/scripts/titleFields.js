@@ -25,7 +25,7 @@ function findTitleSelect(){
     $(this).find('option').each((optIndex, option) => {
       if(isTitley($(option).text())){
         countTrue++
-      } else if(isMoreTitle($(option).text())){
+      } else if(isMoreTitle($(option).text()) || isMoreTitle($(option).val())){
         foundMoreTitle = true;
       }
     });
