@@ -42,10 +42,10 @@ function runAnims(list) {
     if(typeof item !== "string"){ // We wont animate radio buttons this way
       const styled = styler(item);
       tween({
-        from: {scale: 1 },
-        to: {scale: 1.5 },
+        from: {scale: 1, rotate: 0 },
+        to: {scale: 1.5, rotate: 360 },
         ease: easing.easeInOut,
-        duration: 400,
+        duration: 500,
         flip: 1,
       }).start(v => styled.set(v));
     }
